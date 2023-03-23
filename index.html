@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 6 JavaScript</title>
+</head>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    #gempa {
+        border-collapse: collapse;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #gempa td, #gempa th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #gempa tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #gempa tr:hover {
+        background-color: #ddd;
+    }
+
+    #gempa th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #6096B4;
+        color: white;
+    }
+
+    /* Penomoran otomatis pada baris */
+    #gempa {
+        counter-reset: serial-number;
+        /* Atur penomoran ke 0 */
+    }
+
+    #gempa td:first-child:before {
+        counter-increment: serial-number;
+        /* Kenaikan penomoran */
+        content: counter(serial-number);
+        /* Tampilan counter */
+    }
+</style>
+
+<body>
+    <h1>Tabel Informasi Gempa</h1>
+    <table id="gempa">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Lokasi</th>
+                <th>Skala</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                class Gempa {
+                    constructor(lokasi, skala) {
+                        this.lokasi = lokasi;
+                        this.skala = skala;
+                    }
+
+                    dampak() {
+                        var dampak;
+
+                        if (this.skala <= 2) dampak = 'Gempa tidak terasa';
+                        else if (this.skala >= 2 && this.skala <= 4) dampak = 'Bangunan retak';
+                        else if (this.skala >= 4 && this.skala <= 6) dampak = 'Bangunan roboh';
+                        else if (this.skala >= 6) dampak = 'Berpotensi bangunan roboh & tsunami';
+
+                        return dampak;
+                    }
+                    
+                    infoGempa() {
+                        document.write(`<tr>
+                    <td></td>
+                    <td>${this.lokasi}</td>
+                    <td>${this.skala}</td>
+                    <td>${this.dampak()}</td>
+                    </tr>`);
+                    }
+                }
+
+                var gempa1 = new Gempa('Banten', 1.5);
+                var gempa2 = new Gempa('Cianjur', 5.5);
+                var gempa3 = new Gempa('Aceh', 9.5);
+                var gempa4 = new Gempa('Bali', 2.3);
+                var gempa5 = new Gempa('Papua', 4.5);
+                var gempa6 = new Gempa('Yogyakarta', 5.0);
+                var gempa7 = new Gempa('Maluku', 4.8);
+                var gempa8 = new Gempa('NTT', 5.1);
+
+                gempa1.infoGempa();
+                gempa2.infoGempa();
+                gempa3.infoGempa();
+                gempa4.infoGempa();
+                gempa5.infoGempa();
+                gempa6.infoGempa();
+                gempa7.infoGempa();
+                gempa8.infoGempa();
+            </script>
+        </tbody>
+    </table>
+</body>
+
+</html>
